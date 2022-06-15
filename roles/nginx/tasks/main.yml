@@ -32,36 +32,23 @@
       marker: ""
       block: |
         server {
-          listen      80;
-          listen      [::]:80 ipv6only=on;
-          root /usr/share/nginx/www;
+          listen 80;
+          root /usr/share/nginx/html;
           index index.html;
-
-          location /grafana/ {
-           proxy_pass http://localhost:3000/;
-           proxy_set_header Host $host;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-Host $host;
-           proxy_set_header X-Forwarded-Server $host;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          }
-
+          
           location /prometheus/ {
-           proxy_pass http://localhost:9090/;
-           proxy_set_header Host $host;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-Host $host;
-           proxy_set_header X-Forwarded-Server $host;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:9090;
           }
 
-           location /ne/ {
-           proxy_pass http://localhost:91000/metrics;
-           proxy_set_header Host $host;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-Host $host;
-           proxy_set_header X-Forwarded-Server $host;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          location /grafana {
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:3000;
+          }
+  
+          location /ne/ {
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:9100/metrics;
           }
         }
 
