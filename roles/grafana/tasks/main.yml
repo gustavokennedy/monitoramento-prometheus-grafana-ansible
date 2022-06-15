@@ -39,7 +39,6 @@
     name: grafana-server
     enabled: yes
 
-
 - name: "Copiando arquivos de configuração do Grafana"
   template:
     src: "grafana.conf.j2"
@@ -49,5 +48,48 @@
 - name: "Verificando status 200 do Grafana"
   uri:
     url: http://127.0.0.1:3000
+    method: GET
+    status_code: 200
+    
+- name: Verifica Nginx
+  apt:
+    name: nginx
+    state: present
+  notify: Start and Enable Nginx
+
+- name: Cria arquivo do Grafana para Nginx
+  copy:
+      dest: /etc/nginx/conf.d/grafana.conf
+      mode: 0755
+      content: |
+        map $http_upgrade $connection_upgrade {
+          default upgrade;
+          '' close;
+        }
+
+        upstream grafana {
+          server localhost:3000;
+        }
+
+        server {
+          listen 80;
+          root /usr/share/nginx/www;
+          index index.html index.htm;
+
+          location /grafana/ {
+            rewrite  ^/grafana/(.*)  /$1 break;
+            proxy_set_header Host $http_host; 
+            proxy_pass http://grafana;
+          }
+
+- name: Iniciando e Ativando Nginx
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+    
+- name: "Verificando status 200 do Nginx com Grafana"
+  uri:
+    url: http://127.0.0.1/grafana
     method: GET
     status_code: 200
