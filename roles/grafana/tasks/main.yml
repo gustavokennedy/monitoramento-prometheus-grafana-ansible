@@ -4,11 +4,12 @@
       state: present
       update_cache: yes
 
-- name: Adicionando chave GPG do Grafana
-  become: yes
-  get_url:
-    url: "https://packages.grafana.com/gpg.key"
-  shell: sudo apt-key add -
+- name: Adicionando chave GPG e APT do Grafana ao repositório 
+  shell: |
+    curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+    add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+  args:
+    warn: no
   
 - name: Adicionando repo do Grafana
   apt_repository:
