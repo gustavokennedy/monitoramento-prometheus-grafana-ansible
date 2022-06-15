@@ -62,7 +62,7 @@
 - name: Copiando página - index.html
   copy:
     src: "{{ role_path }}/files/index.html"
-    dest: /usr/share/nginx/html/
+    dest: /var/www/html/
 
 
 - name: Conectando Proxy NGINX
