@@ -41,11 +41,11 @@
     method: GET
     status_code: 200
 
-    - name: Verificando Nginx
-      apt:
-        name: nginx
-        state: present
-      notify: Start and Enable Nginx
+- name: Verificando Nginx
+  apt:
+    name: nginx
+    state: present
+  notify: Start and Enable Nginx
 
 - name: Criando arquivo de configuração do Grafana para Nginx
   copy:
