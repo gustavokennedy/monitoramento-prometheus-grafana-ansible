@@ -49,8 +49,11 @@
   systemd:
     name: grafana-server
     state: restarted
+    
+- name: Aguarda 5s para reiniciar
   wait_for:
-    delay: 120
+    timeout: 300
+  delegate_to: localhost
 
 - name: "Verificando status 200 do Grafana"
   uri:
