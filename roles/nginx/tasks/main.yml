@@ -54,6 +54,8 @@
   become: yes
   command:
     cmd: ln -s /etc/nginx/sites-available/default_proxy.conf /etc/nginx/sites-enabled/default_proxy.conf
+  args:
+    warn: no
 
 - name: Iniciando NGINX
   become: yes
