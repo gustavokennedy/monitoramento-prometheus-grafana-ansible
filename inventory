@@ -1,3 +1,9 @@
+[all:children]
+nginx
+
+[nginx]
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
+
 [prometheus]
 192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
 
