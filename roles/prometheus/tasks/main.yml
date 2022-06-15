@@ -75,3 +75,35 @@
     url: http://localhost:9090
     method: GET
     status_code: 200
+    
+- name: Verifica Nginx
+  apt:
+    name: nginx
+    state: present
+  notify: Start and Enable Nginx
+
+- name: Cria arquivo do Prometheus para Nginx
+  copy:
+      dest: /etc/nginx/sites-available/default
+      mode: 0755
+      content: |
+        server {
+          listen 80;
+          root /usr/share/nginx/html;
+          index index.html index.htm;
+          location /prometheus {
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:9090;
+          }
+        }
+- name: Iniciando e Ativando Nginx
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+    
+- name: "Verificando status 200 do Nginx com Prometheus"
+  uri:
+    url: http://127.0.0.1/prometheus
+    method: GET
+    status_code: 200
