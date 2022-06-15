@@ -1,21 +1,51 @@
-- name: Install grafana
-  yum:
-    name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
-    state: latest
+- name: "Atualiza repositório APT e cacha Ubuntu"
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    cache_valid_time: 3600
 
-- name: "Grafana configuration file copy"
+- name: "Instala pacotes necessários"
+  apt:
+    name:
+      - gnupg2
+      - curl
+      - software-properties-common
+    state: present
+
+- name: "Add Grafana ao repositório APT"
+  shell: |
+    curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+    add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+  args:
+    warn: no
+
+- name: "Instala o pacote Grafana"
+  apt:
+    name: grafana
+    state: present
+    update_cache: yes
+  notify:
+    - Start grafana
+    - Enable grafana
+
+- name: "Atualiza todos pacotes do servidor"
+  apt:
+    upgrade: dist
+    force_apt_get: yes
+
+- name: "Copia arquivo de configuração do Grafana"
   template:
     src: "grafana.conf.j2"
     dest: /etc/grafana/grafana.ini
   notify: event_restart_grafana
 
-- name: "Grafana server started"
+- name: "Inicia servidor Grafana"
   service:
     name: grafana-server
     enabled: true
     state: started
 
-- name: "Check if Grafana is accessible."
+- name: "Verifica status 200 do Grafana"
   uri:
     url: http://127.0.0.1:3000
     method: GET
