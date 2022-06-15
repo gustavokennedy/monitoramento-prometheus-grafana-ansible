@@ -1,6 +1,8 @@
---
+--   
 - hosts: nginx
   gather_facts: yes
+  become_user: root
+  become_method: sudo
   roles:
     - nginx
 
