@@ -4,6 +4,11 @@
   apt:
     name: nginx
     state: present
+    
+- name: Removendo arquivo padrão Proxy do NGINX
+  become: yes
+  command:
+    cmd: rm -rf /etc/nginx/sites-enabled/default
 
 - name: Criando novo arquivo de configração NGINX
   become: yes
@@ -45,10 +50,15 @@
           }
         }
 
+- name: Removendo arquivo Available Proxy do NGINX
+  become: yes
+  command:
+    cmd: rm -rf /etc/nginx/sites-available/default
+    
 - name: Conectando Proxy NGINX
   become: yes
   command:
-    cmd: ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+    cmd: ln -s /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
   args:
     warn: no
 
