@@ -5,10 +5,17 @@
     name: nginx
     state: present
     
-- name: Removendo arquivo padrão Proxy do NGINX
+- name: Removendo arquivo Sites-Enabled do NGINX
   become: yes
   command:
     cmd: rm -rf /etc/nginx/sites-enabled/default
+  args:
+   warn: no
+   
+- name: Removendo arquivo Sites-Available do NGINX
+  become: yes
+  command:
+    cmd: rm -rf /etc/nginx/sites-available/default
   args:
    warn: no
 
