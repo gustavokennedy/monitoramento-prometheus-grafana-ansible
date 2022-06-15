@@ -1,8 +1,8 @@
-- name: Creating node_exporter user group
+- name: Criando grupo de usuários para Node_Exporter
   group: name="{{groupId}}"
   become: true
 
-- name: Creating node_exporter user
+- name: Criando usuário para Node_Exporter
   user:
     name: "{{userId}}"
     group: "{{groupId}}"
@@ -12,13 +12,13 @@
     createhome: "no"
     state: present
 
-- name: Install prometheus node exporter
+- name: Instalando o Node_Exporter
   unarchive:
     src: "https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-amd64.tar.gz"
     dest: /tmp/
     remote_src: yes
 
-- name: Copy prometheus node exporter file to bin
+- name: Copiando Node_Exporter para pasta BIN
   copy:
     src: "/tmp/node_exporter-{{ version }}.linux-amd64/node_exporter"
     dest: "/usr/local/bin/node_exporter"
@@ -27,23 +27,23 @@
     remote_src: yes
     mode: 0755
 
-- name: Delete node exporter tmp folder
+- name: Removendo pasta temporária
   file:
     path: '/tmp/node_exporter-{{ version }}.linux-amd64'
     state: absent
 
-- name: Copy systemd init file
+- name: Copiando arquivo systemd init
   template:
     src: init.service.j2
     dest: /etc/systemd/system/node_exporter.service
 
-- name: Start node_exporter service
+- name: Inicinado o Node_Exporter
   service:
     name: node_exporter
     state: started
     enabled: yes
 
-- name: Check if node exporter emits metrices
+- name: Verificando status 200 do Node_Exporter
   uri:
     url: http://127.0.0.1:9100/metrics
     method: GET
