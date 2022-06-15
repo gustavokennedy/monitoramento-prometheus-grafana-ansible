@@ -65,6 +65,12 @@
     src: "{{ role_path }}/files/index.html"
     dest: /var/www/html/
 
+- name: Removendo arquivo index padrão do NGINX
+  become: yes
+  command:
+    cmd: rm -rf /var/www/html/index.nginx-debian.html
+  args:
+   warn: no
 
 - name: Conectando Proxy NGINX
   become: yes
