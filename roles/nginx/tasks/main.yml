@@ -60,6 +60,7 @@
     warn: no
 
 - name: Copiando página - index.html
+  become: yes
   copy:
     src: "{{ role_path }}/files/index.html"
     dest: /var/www/html/
