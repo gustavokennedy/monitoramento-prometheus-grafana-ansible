@@ -1,11 +1,11 @@
 [prometheus]
-192.168.0.132
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
 
 [node_exporter]
-192.168.0.132
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
 
 [alertmanager]
-192.168.0.132
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
 
 [grafana]
-192.168.0.132
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
