@@ -1,0 +1,63 @@
+---
+- name: Instalando Nginx
+  become: yes
+  apt:
+    name: nginx
+    state: present
+
+- name: Desabilitando Proxy Default do NGINX
+  become: yes
+  command:
+    cmd: unlink /etc/nginx/sites-enabled/default
+
+- name: Criando novo arquivo de configração NGINX
+  become: yes
+  file:
+    path: /etc/nginx/sites-available/default_proxy.conf
+    state: touch
+
+- name: Inserindo configuração no NGINX
+  become: yes
+  blockinfile:
+      path: /etc/nginx/sites-available/default_proxy.conf
+      marker: ""
+      block: |
+        server {
+          listen 80;
+          root /usr/share/nginx/html;
+          index index.html index.htm;
+          location /prometheus {
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:9090;
+          }
+        }
+        server {
+          listen 80;
+          root /usr/share/nginx/html;
+          index index.html index.htm;
+          location /grafana {
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:3000;
+          }
+        }
+        server {
+          listen 80;
+          root /usr/share/nginx/html;
+          index index.html index.htm;
+          location /ne {
+            proxy_set_header Host $http_host;
+            proxy_pass http://127.0.0.1:9100/metrics;
+          }
+        }
+
+- name: Conectando Proxy NGINX
+  become: yes
+  command:
+    cmd: ln -s /etc/nginx/sites-available/default_proxy.conf /etc/nginx/sites-enabled/default_proxy.conf
+
+- name: Iniciando NGINX
+  become: yes
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
