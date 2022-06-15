@@ -46,20 +46,3 @@
     name: nginx
     state: present
   notify: Start and Enable Nginx
-
-handlers:
-  - name: Iniciando Grafana
-    systemd:
-      name: grafana-server
-      state: started
-
-  - name: Ativando Grafana
-    systemd:
-      name: grafana-server
-      enabled: yes
-
-  - name: Iniciar a habilitar Nginx
-    systemd:
-      name: nginx
-      state: started
-      enabled: yes
