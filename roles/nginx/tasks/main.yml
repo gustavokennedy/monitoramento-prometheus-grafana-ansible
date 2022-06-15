@@ -58,7 +58,13 @@
     cmd: rm -rf /etc/nginx/sites-available/default
   args:
     warn: no
-    
+
+- name: Copiando página - index.html
+  copy:
+    src: "{{ role_path }}/files/index.html"
+    dest: /usr/share/nginx/html/
+
+
 - name: Conectando Proxy NGINX
   become: yes
   command:
