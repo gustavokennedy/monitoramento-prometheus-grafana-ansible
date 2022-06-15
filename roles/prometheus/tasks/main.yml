@@ -1,8 +1,8 @@
-- name: Creating prometheus user group
+- name: Criando grupo de usuário para o Prometheus
   group: name="{{groupId}}"
   become: true
 
-- name: Creating prometheus user
+- name: Criando usuário para o Prometheus
   user:
     name: "{{userId}}"
     group: "{{groupId}}"
@@ -12,13 +12,13 @@
     createhome: "no"
     state: present
 
-- name: Install prometheus
+- name: Instalando o Prometheus
   unarchive:
     src: "https://github.com/prometheus/prometheus/releases/download/v{{ version }}/prometheus-{{ version }}.linux-amd64.tar.gz"
     dest: /tmp/
     remote_src: yes
 
-- name: Copy prometheus file to bin
+- name: Copiando Prometheus para pasta BIN
   copy:
     src: "/tmp/prometheus-{{ version }}.linux-amd64/prometheus"
     dest: "/usr/local/bin/prometheus"
@@ -27,7 +27,7 @@
     remote_src: yes
     mode: 0755
 
-- name: Delete prometheus tmp folder
+- name: Removendo diretório temporário do Prometheus
   file:
     path: '/tmp/prometheus-{{ version }}.linux-amd64'
     state: absent
@@ -40,7 +40,7 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: Creates directory
+- name: Criando diretórios para o Prometheus
   file: 
     path: "/etc/prometheus/"
     state: directory
@@ -48,29 +48,29 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: config file
+- name: Copiando arquivos de configuração do Prometheus
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
 
-- name: alert config file
+- name: Copiando arquivos de Alerta do Prometheus
   copy:
     src: "{{ role_path }}/files/alertrules.yml"
     dest: /etc/prometheus/alert.rules.yml
 
-- name: Copy systemd init file
+- name: Copiando arquivo systemd init
   template:
     src: init.service.j2
     dest: /etc/systemd/system/prometheus.service
   notify: systemd_reload
 
-- name: Start prometheus service
+- name: Iniciando o Prometheus
   service:
     name: prometheus
     state: started
     enabled: yes
 
-- name: Check if prometheus is accessible
+- name: Verificando status 200 do Prometheus
   uri:
     url: http://localhost:9090
     method: GET
