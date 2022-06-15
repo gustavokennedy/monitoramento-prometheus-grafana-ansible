@@ -51,36 +51,3 @@
     method: GET
     status_code: 200
     
-- name: Verifica Nginx
-  apt:
-    name: nginx
-    state: present
-  notify: Start and Enable Nginx
-
-- name: Cria arquivo do Grafana para Nginx
-  copy:
-      dest: /etc/nginx/sites-available/default
-      mode: 0755
-      content: |
-        server {
-          listen 80;
-          root /usr/share/nginx/html;
-          index index.html index.htm;
-
-          location /grafana {
-            proxy_set_header Host $http_host;
-            proxy_pass http://127.0.0.1:3000;
-          }
-        }
-
-- name: Iniciando e Ativando Nginx
-  systemd:
-    name: nginx
-    state: started
-    enabled: yes
-    
-- name: "Verificando status 200 do Nginx com Grafana"
-  uri:
-    url: http://127.0.0.1/grafana
-    method: GET
-    status_code: 200
