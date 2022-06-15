@@ -9,6 +9,8 @@
   become: yes
   command:
     cmd: rm -rf /etc/nginx/sites-enabled/default
+  args:
+   warn: no
 
 - name: Criando novo arquivo de configração NGINX
   become: yes
@@ -54,6 +56,8 @@
   become: yes
   command:
     cmd: rm -rf /etc/nginx/sites-available/default
+  args:
+    warn: no
     
 - name: Conectando Proxy NGINX
   become: yes
