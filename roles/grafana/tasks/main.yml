@@ -44,6 +44,11 @@
     src: "grafana.conf.j2"
     dest: /etc/grafana/grafana.ini
   notify: event_restart_grafana
+  
+- name: Reiniciando Grafana
+  systemd:
+    name: grafana-server
+    state: restarted
 
 - name: "Verificando status 200 do Grafana"
   uri:
