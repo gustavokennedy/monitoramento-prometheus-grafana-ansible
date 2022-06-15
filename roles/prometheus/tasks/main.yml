@@ -32,7 +32,7 @@
     path: '/tmp/prometheus-{{ version }}.linux-amd64'
     state: absent
 
-- name: Creates directory
+- name: Criando diretórios em /data
   file: 
     path: "/data/prometheus/"
     state: directory
@@ -40,7 +40,7 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: Criando diretórios para o Prometheus
+- name: Criando diretórios em /etc/ para o Prometheus
   file: 
     path: "/etc/prometheus/"
     state: directory
