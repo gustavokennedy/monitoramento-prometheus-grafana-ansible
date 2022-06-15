@@ -5,6 +5,7 @@
       update_cache: yes
 
 - name: Adicionando chave GPG do Grafana
+  become: yes
   get_url:
     url: "https://packages.grafana.com/gpg.key"
   shell: sudo apt-key add -
