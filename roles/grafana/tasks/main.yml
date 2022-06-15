@@ -50,9 +50,9 @@
     name: grafana-server
     state: restarted
     
-- name: Aguarda 5s para reiniciar
+- name: Aguardando Grafana reiniciar
   wait_for:
-    timeout: 300
+    timeout: 15
   delegate_to: localhost
 
 - name: "Verificando status 200 do Grafana"
