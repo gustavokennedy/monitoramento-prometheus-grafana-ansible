@@ -5,21 +5,16 @@
     name: nginx
     state: present
 
-- name: Desabilitando Proxy Default do NGINX
-  become: yes
-  command:
-    cmd: unlink /etc/nginx/sites-enabled/default
-
 - name: Criando novo arquivo de configração NGINX
   become: yes
   file:
-    path: /etc/nginx/sites-available/default_proxy.conf
+    path: /etc/nginx/sites-enabled/default
     state: touch
 
 - name: Inserindo configuração no NGINX
   become: yes
   blockinfile:
-      path: /etc/nginx/sites-available/default_proxy.conf
+      path: /etc/nginx/sites-enabled/default
       marker: ""
       block: |
         server {
@@ -53,7 +48,7 @@
 - name: Conectando Proxy NGINX
   become: yes
   command:
-    cmd: ln -s /etc/nginx/sites-available/default_proxy.conf /etc/nginx/sites-enabled/default_proxy.conf
+    cmd: ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
   args:
     warn: no
 
