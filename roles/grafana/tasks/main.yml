@@ -59,7 +59,7 @@
 
 - name: Cria arquivo do Grafana para Nginx
   copy:
-      dest: /etc/nginx/conf.d/grafana.conf
+      dest: /etc/nginx/sites-available/default
       mode: 0755
       content: |
         map $http_upgrade $connection_upgrade {
