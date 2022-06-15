@@ -58,19 +58,19 @@
     cmd: rm -rf /etc/nginx/sites-available/default
   args:
     warn: no
+    
+- name: Removendo arquivo index padrão do NGINX
+  become: yes
+  command:
+    cmd: rm -rf /usr/share/nginx/html/index.html
+  args:
+   warn: no
 
 - name: Copiando página - index.html
   become: yes
   copy:
     src: "{{ role_path }}/files/index.html"
-    dest: /var/www/html/
-
-- name: Removendo arquivo index padrão do NGINX
-  become: yes
-  command:
-    cmd: rm -rf /var/www/html/index.nginx-debian.html
-  args:
-   warn: no
+    dest: /usr/share/nginx/html/
 
 - name: Conectando Proxy NGINX
   become: yes
