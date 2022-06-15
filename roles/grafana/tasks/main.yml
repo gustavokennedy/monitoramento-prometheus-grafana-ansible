@@ -70,14 +70,10 @@
           server_tokens off;
           client_max_body_size 10M;
 
-          location /grafana/ {
+          location /grafana {
+            rewrite  ^/grafana/(.*)  /$1 break;
             proxy_set_header Host $http_host; 
             proxy_pass http://grafana;
-            send_timeout            600;
-            proxy_read_timeout      600;
-            proxy_send_timeout      600;
-            proxy_connect_timeout   600;
-            proxy_redirect          off;
           }
         }
 
