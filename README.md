@@ -1,15 +1,3 @@
-# 
-
-
-
-## Getting Started
-
-Step 1: Update ip address of instances in inventory file.
-
-Step 2: Run ansible command to setup prometheus, node_exporter, alertmanager and Grafana services
-
-Ansible command: ansible-playbook playbook.yml
-
 <p align="center">
    <br/>
    <h1 align="center">Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible</h1>
