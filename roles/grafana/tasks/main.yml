@@ -49,6 +49,8 @@
   systemd:
     name: grafana-server
     state: restarted
+  wait_for:
+    delay: 120
 
 - name: "Verificando status 200 do Grafana"
   uri:
