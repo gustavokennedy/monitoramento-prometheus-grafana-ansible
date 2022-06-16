@@ -60,7 +60,7 @@
     src: default-prometheus.j2
     dest: /etc/default/prometheus
   notify:
-    - Restart prometheus
+    - Reiniciando o Prometheus
   tags:
     - prometheus
     - config
