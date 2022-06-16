@@ -65,6 +65,7 @@
   notify: systemd_reload
 
 - name: Iniciando o Prometheus
+  become: yes
   service:
     name: prometheus
     state: started
@@ -72,11 +73,10 @@
   command:
     cmd: --web.external-url=/prometheus/
   args:
-   warn: no
+    warn: no
   
 - name: Verificando status 200 do Prometheus
   uri:
     url: http://localhost:9090
     method: GET
     status_code: 200
-    
