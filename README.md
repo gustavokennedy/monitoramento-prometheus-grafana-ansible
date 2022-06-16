@@ -26,6 +26,12 @@
 git https://github.com/gustavokennedy/monitoramento-prometheus-grafana-ansible.git
 cd monitoramento-prometheus-grafana-ansible
 ```
+Para evitar erros, isntale o SSHPASS:
+
+```
+sudo apt-get install sshpass
+```
+
 ### 2. Configurando variáveis
 
 Abra o arquivo inventory e altere para os IPs específicos:
