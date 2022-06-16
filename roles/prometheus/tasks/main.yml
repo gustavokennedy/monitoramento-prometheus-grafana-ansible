@@ -52,6 +52,16 @@
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
+    
+- name: Configurando argumentos no Prometheus
+  template:
+    src: default-prometheus.j2
+    dest: /etc/default/prometheus
+  notify:
+    - Restart prometheus
+  tags:
+    - prometheus
+    - config
 
 - name: Copiando arquivos de Alerta do Prometheus
   copy:
@@ -69,8 +79,6 @@
     name: prometheus
     state: started
     enabled: yes
-  args:
-    {"--web.external-url=/prometheus/"}
 
 - name: Verificando status 200 do Prometheus
   uri:
