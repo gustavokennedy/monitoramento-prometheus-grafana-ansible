@@ -7,5 +7,5 @@ groups:
     labels:
       severity: "critical"
     annotations:
-      summary: "Endpoint {{ $labels.instance }} down"
-      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minutes."
+      summary: "Endpoint {{ $labels.instance }} fora do ar"
+      description: "A {{ $labels.instance }} do job {{ $labels.job }} está fora do ar mais de 1 minuto."
