@@ -2,16 +2,16 @@
 nginx
 
 [nginx]
-192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=root
 
 [prometheus]
-192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=root
 
 [node_exporter]
-192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=root
 
 [alertmanager]
-192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=root
 
 [grafana]
-192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=usuario
+192.168.0.132 ansible_ssh_pass=root ansible_ssh_user=root
