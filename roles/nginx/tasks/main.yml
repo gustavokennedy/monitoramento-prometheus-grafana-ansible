@@ -82,7 +82,7 @@
 - name: Parando Apache
   become: yes
   service:
-    name: httpd
+    name: apache2
     state: stopped
     enabled: yes
 
