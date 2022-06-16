@@ -12,6 +12,8 @@
 
 - name: Adicionado Grafana ao repositório
   retries: 2
+  args:
+    warn: no
   apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
     state: present
