@@ -81,13 +81,12 @@
     src: init.service.j2
     dest: /etc/systemd/system/prometheus.service
   notify: systemd_reload
-
-- name: Iniciando o Prometheus
-  become: yes
+    
+- name: Habilitando e iniciando o Prometheus
   service:
     name: prometheus
-    state: started
     enabled: yes
+    state: started
   
 - name: Verificando status 200 do Prometheus
   uri:
