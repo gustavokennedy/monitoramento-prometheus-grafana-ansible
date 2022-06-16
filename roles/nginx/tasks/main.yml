@@ -80,11 +80,9 @@
     warn: no
 
 - name: Parando Apache
-  become: yes
   service:
     name: apache2
-    state: stopped
-    enabled: yes
+    state: stopped 
 
 - name: Iniciando NGINX
   become: yes
