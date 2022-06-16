@@ -41,7 +41,7 @@
 - name: Instalando Grafana
   package:
     name: "{{ grafana_package }}"
-    state: "{{ (grafana_version == 'latest') }}"
+    state: "{{ (version == 'latest') }}"
   register: _install_packages
   until: _install_packages is succeeded
   retries: 5
