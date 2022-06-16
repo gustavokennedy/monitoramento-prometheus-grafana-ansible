@@ -1,2 +1,3 @@
 ---
+grafana_package: "grafana{% if ansible_architecture == 'armv6l' %}-rpi{% endif %}{{ (grafana_version != 'latest') | ternary('=' ~ grafana_version, '') }}"
 version: 5.4.3
