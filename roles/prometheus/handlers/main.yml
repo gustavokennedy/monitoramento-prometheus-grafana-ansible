@@ -1,9 +1,9 @@
-- name: Restart the Prometheus service
+- name: Reinicia o Prometheus
   service:
     name: prometheus
     state: restarted
   listen: event_restart_prometheus
 
-- name: Reload systemd
+- name: Recarrega o systemd
   command: systemctl daemon-reload
   listen: systemd_reload
