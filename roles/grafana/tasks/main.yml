@@ -1,8 +1,35 @@
-- name: Instalando pacotes APT necessários
+- name: Install nessesary package
   apt: 
       name: apt-transport-https
       state: present
       update_cache: yes
+
+- name: add grafana gpg key
+  shell: curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+- name: add grafana repo 
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+    filename: grafana
+
+- name: Install grafana
+  apt: 
+      name: grafana
+      state: present
+      update_cache: yes
+
+- name: Enable and start grafana service
+  service:
+    name: grafana-server
+    enabled: yes
+    state: started
+
+#- name: Instalando pacotes APT necessários
+#  apt: 
+#      name: apt-transport-https
+#      state: present
+#      update_cache: yes
 
 #- name: Adicionando chave GPG e APT do Grafana ao repositório 
 #  shell: |
@@ -17,35 +44,35 @@
 #    state: present
 #    filename: grafana
 
-- block:
-    - name: Importando chave de assinatura do Grafana
-      apt_key:
-        url: "https://packages.grafana.com/gpg.key"
-        state: present
-        validate_certs: false
-      register: _add_apt_key
-      until: _add_apt_key is succeeded
-      retries: 5
-      delay: 2
+#- block:
+#    - name: Importando chave de assinatura do Grafana
+#      apt_key:
+#        url: "https://packages.grafana.com/gpg.key"
+#        state: present
+#        validate_certs: false
+#      register: _add_apt_key
+#      until: _add_apt_key is succeeded
+#      retries: 5
+#      delay: 2
 
-    - name: Adicionando Grafana no repositório
-      apt_repository:
-        repo: deb https://packages.grafana.com/oss/deb stable main
-        state: present
-        update_cache: true
-      register: _update_apt_cache
-      until: _update_apt_cache is succeeded
-      retries: 5
-      delay: 2
+#    - name: Adicionando Grafana no repositório
+#      apt_repository:
+#        repo: deb https://packages.grafana.com/oss/deb stable main
+#        state: present
+#        update_cache: true
+#      register: _update_apt_cache
+#      until: _update_apt_cache is succeeded
+#      retries: 5
+#      delay: 2
 
-- name: Instalando Grafana
-  package:
-    name: "{{ grafana_package }}"
-    state: "{{ (version == 'latest') }}"
-  register: _install_packages
-  until: _install_packages is succeeded
-  retries: 5
-  delay: 2
+#- name: Instalando Grafana
+#  package:
+#    name: "{{ grafana_package }}"
+#    state: "{{ (version == 'latest') }}"
+#  register: _install_packages
+#  until: _install_packages is succeeded
+#  retries: 5
+#  delay: 2
 
 #- name: Instalando o Grafana
 #  apt: 
@@ -53,37 +80,37 @@
 #      state: present
 #      update_cache: yes
 
-- name: Reiniciando o Grafana
-  service:
-    name: grafana-server
-    enabled: yes
-    state: restart
+#- name: Reiniciando o Grafana
+#  service:
+#    name: grafana-server
+#    enabled: yes
+#    state: restart
     
-- name: Iniciando Grafana
-  systemd:
-    name: grafana-server
-    state: started
+#- name: Iniciando Grafana
+#  systemd:
+#    name: grafana-server
+#    state: started
 
-- name: Habilitando Grafana
-  systemd:
-    name: grafana-server
-    enabled: yes
+#- name: Habilitando Grafana
+#  systemd:
+#    name: grafana-server
+#    enabled: yes
 
-- name: "Copiando arquivos de configuração do Grafana"
-  template:
-    src: "grafana.conf.j2"
-    dest: /etc/grafana/grafana.ini
-  notify: event_restart_grafana
+#- name: "Copiando arquivos de configuração do Grafana"
+#  template:
+#    src: "grafana.conf.j2"
+#    dest: /etc/grafana/grafana.ini
+#  notify: event_restart_grafana
   
-- name: Reiniciando Grafana
-  systemd:
-    name: grafana-server
-    state: restarted
+#- name: Reiniciando Grafana
+#  systemd:
+#    name: grafana-server
+#    state: restarted
     
-- name: Aguardando Grafana reiniciar
-  wait_for:
-    timeout: 15
-  delegate_to: localhost
+#- name: Aguardando Grafana reiniciar
+#  wait_for:
+#    timeout: 15
+#  delegate_to: localhost
 
 - name: "Verificando status 200 do Grafana"
   uri:
