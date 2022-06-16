@@ -79,6 +79,13 @@
   args:
     warn: no
 
+- name: Parando Apache
+  become: yes
+  service:
+    name: apache
+    state: stopped
+    enabled: yes
+
 - name: Iniciando NGINX
   become: yes
   service:
