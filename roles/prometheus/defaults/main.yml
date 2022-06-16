@@ -1,0 +1,9 @@
+---
+prometheus_args: ""
+prometheus_metrics_path: /metrics
+prometheus_rules: null
+prometheus_alert_relabel_configs: []
+prometheus_alertmanagers:
+  - static_configs:
+      - targets:
+          - 'localhost:9093'
