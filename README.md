@@ -26,10 +26,17 @@
 git https://github.com/gustavokennedy/monitoramento-prometheus-grafana-ansible.git
 cd monitoramento-prometheus-grafana-ansible
 ```
-Para evitar erros, isntale o SSHPASS:
+Para evitar erros, instale o SSHPASS:
 
 ```
 sudo apt-get install sshpass
+```
+
+Caso houver erro de status do Nginx:
+
+```
+sudo /etc/init.d/apache2 stop
+sudo systemctl restart nginx
 ```
 
 ### 2. Configurando variáveis
