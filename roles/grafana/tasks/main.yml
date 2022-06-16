@@ -9,11 +9,11 @@
 
 - name: Adicionando chave GPG do Grafana
   shell: curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+  args:
+    warn: no
 
 - name: Adicionado Grafana ao repositório
   retries: 2
-  args:
-    warn: no
   apt_repository:
     repo: deb https://packages.grafana.com/oss/deb stable main
     state: present
