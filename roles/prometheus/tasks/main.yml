@@ -52,9 +52,12 @@
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
-    
-#comentárioteste    
 
+- name: Reinciando daemon-reload
+  shell: |
+    systemctl daemon-reload
+    
+# Erro de systemctl daemon-reload
 - name: Configurando argumentos no Prometheus
   template:
     src: default-prometheus.j2
