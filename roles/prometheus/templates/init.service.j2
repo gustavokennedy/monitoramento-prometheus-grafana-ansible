@@ -10,8 +10,7 @@ Restart=always
 RestartSec=2
 StartLimitInterval=0
 Type=simple
-## ExecStart={{ exec_command }}
-ExecStart=--web.external-url=/prometheus/
+ExecStart=~/prometheus/prometheus --storage.tsdb.path=/var/lib/prometheus/data/ --web.external-url=http://localhost:9090/prometheus
 
 [Install]
 WantedBy=multi-user.target
