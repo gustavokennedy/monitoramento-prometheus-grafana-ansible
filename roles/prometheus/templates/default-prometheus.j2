@@ -2,3 +2,14 @@
 ARGS="{{ prometheus_args }}"
 
 --web.external-url=/prometheus/
+--web.listen-address="0.0.0.0:9090"
+--web.read-timeout=5m
+--web.max-connections=1024
+--web.route-prefix=
+--web.local-assets="/usr/share/prometheus/web/"
+--web.enable-lifecycle
+--web.enable-admin-api
+--web.console.libraries="/etc/prometheus/console_libraries"
+--alertmanager.timeout=60s
+--query.timeout=2m
+--log.level=info
