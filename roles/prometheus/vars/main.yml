@@ -1,5 +1,5 @@
 ---
-serviceName: "prometheus"
+serviceName: ">>> Prometheus"
 userId: "prometheus"
 groupId: "prometheus"
 exec_command: "--web.external-url=http://localhost:9090/prometheus /usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.conf --storage.tsdb.path=/data/prometheus --storage.tsdb.retention=2d"
