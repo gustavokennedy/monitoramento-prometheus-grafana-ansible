@@ -1,4 +1,5 @@
----
+# Gustavo Kennedy Renkel - 16/06/2022
+
 - name: Instalando Nginx
   become: yes
   apt:
@@ -51,14 +52,7 @@
             proxy_pass http://127.0.0.1:9100/metrics;
           }
         }
-
-- name: Removendo arquivo Available Proxy do NGINX
-  become: yes
-  command:
-    cmd: rm -rf /etc/nginx/sites-available/default
-  args:
-    warn: no
-    
+   
 - name: Removendo arquivo index padrão do NGINX
   become: yes
   command:
@@ -66,7 +60,7 @@
   args:
    warn: no
 
-- name: Copiando página - index.html
+- name: Copiando página modelo - index.html
   become: yes
   copy:
     src: "{{ role_path }}/files/index.html"
