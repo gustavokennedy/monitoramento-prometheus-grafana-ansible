@@ -76,12 +76,17 @@
     dest: /etc/prometheus/alert.rules.yml
 
 # Adicionado recente config de path
-- name: Copiando arquivo systemd init
+- name: Copiando arquivo prometheus.service
   template:
     src: init.service.j2
     dest: /etc/systemd/system/prometheus.service
   notify: systemd_reload
-    
+  
+# Faz daemon-reload para evitar erro nos argumentos
+- name: Reinciando daemon-reload
+  shell: |
+    systemctl daemon-reload
+
 - name: Habilitando e iniciando o Prometheus
   service:
     name: prometheus
