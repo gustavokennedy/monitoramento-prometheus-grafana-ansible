@@ -1,3 +1,4 @@
+# Set the command-line arguments to pass to the server.
 ARGS="{{ --web.external-url=/prometheus/ }}"
 
 # Prometheus supports the following options:
@@ -8,7 +9,7 @@ ARGS="{{ --web.external-url=/prometheus/ }}"
 #  --web.read-timeout=5m      Maximum duration before timing out read of the
 #                             request, and closing idle connections.
 #  --web.max-connections=512  Maximum number of simultaneous connections.
-#--web.external-url=<URL>   The URL under which Prometheus is externally
+#  --web.external-url=<URL>   The URL under which Prometheus is externally
 #                             reachable (for example, if Prometheus is served
 #                             via a reverse proxy). Used for generating
 #                             relative and absolute links back to Prometheus
