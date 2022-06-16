@@ -46,7 +46,6 @@
   until: _install_packages is succeeded
   retries: 5
   delay: 2
-  notify: restart grafana
 
 #- name: Instalando o Grafana
 #  apt: 
@@ -54,11 +53,11 @@
 #      state: present
 #      update_cache: yes
 
-- name: Ativando e iniciando serviço do Grafana
+- name: Reiniciando o Grafana
   service:
     name: grafana-server
     enabled: yes
-    state: started
+    state: restart
     
 - name: Iniciando Grafana
   systemd:
