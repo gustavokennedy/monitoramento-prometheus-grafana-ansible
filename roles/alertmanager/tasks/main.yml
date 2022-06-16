@@ -1,3 +1,5 @@
+# Gustavo Kennedy Renkel - 16/06/2022
+
 - name: Criando grupo para o AlertManager
   group: name="{{groupId}}"
   become: true
