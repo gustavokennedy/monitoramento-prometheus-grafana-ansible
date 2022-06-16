@@ -69,6 +69,8 @@
     name: prometheus
     state: started
     enabled: yes
+  args:
+    ["--web.external-url=/prometheus/"]
 
 - name: Verificando status 200 do Prometheus
   uri:
