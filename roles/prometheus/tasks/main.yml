@@ -71,9 +71,7 @@
     state: started
     enabled: yes
   command:
-    cmd: --web.external-url=/prometheus/
-  args:
-    warn: no
+    cmd: "--web.external-url=/prometheus/"
   
 - name: Verificando status 200 do Prometheus
   uri:
