@@ -60,15 +60,15 @@
   shell: |
     systemctl daemon-reload
     
-#- name: Configurando argumentos no Prometheus
-#  template:
-#    src: default-prometheus.j2
-#    dest: /etc/default/prometheus
-#  notify:
-#    - Reiniciando o Prometheus
-#  tags:
-#    - prometheus
-#    - config
+- name: Configurando argumentos no Prometheus
+  template:
+    src: default-prometheus.j2
+    dest: /etc/default/prometheus
+  notify:
+    - Reiniciando o Prometheus
+  tags:
+    - prometheus
+    - config
 
 - name: Copiando arquivos de Alerta do Prometheus
   copy:
