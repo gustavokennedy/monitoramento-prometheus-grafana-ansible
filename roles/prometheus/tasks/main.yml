@@ -1,3 +1,5 @@
+# Gustavo Kennedy Renkel - 16/06/2022
+
 - name: Criando grupo de usuário para o Prometheus
   group: name="{{groupId}}"
   become: true
@@ -53,11 +55,11 @@
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
 
+# Faz daemon-reload para evitar erro nos argumentos
 - name: Reinciando daemon-reload
   shell: |
     systemctl daemon-reload
     
-# Erro de systemctl daemon-reload
 - name: Configurando argumentos no Prometheus
   template:
     src: default-prometheus.j2
@@ -73,6 +75,7 @@
     src: "{{ role_path }}/files/alertrules.yml"
     dest: /etc/prometheus/alert.rules.yml
 
+# Adicionado recente config de path
 - name: Copiando arquivo systemd init
   template:
     src: init.service.j2
