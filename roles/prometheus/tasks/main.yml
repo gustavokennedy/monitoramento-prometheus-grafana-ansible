@@ -52,6 +52,18 @@
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
+    
+#comentárioteste    
+
+- name: Configurando argumentos no Prometheus
+  template:
+    src: default-prometheus.j2
+    dest: /etc/default/prometheus
+  notify:
+    - Restart prometheus
+  tags:
+    - prometheus
+    - config
 
 - name: Copiando arquivos de Alerta do Prometheus
   copy:
