@@ -64,6 +64,12 @@ Para inciar o playbook, execute:
 ansible-playbook playbook.yml
 ```
 
+Caso ainda aconteça erro de permissão tente:
+
+```
+sudo ansible-playbook playbook.yml -kK 
+```
+
 Pode acontencer [erro Missing Sudo Password](https://github.com/gustavokennedy/resolvendo-missing-sudo-password-ansible);
 
 ### Servidor cliente
