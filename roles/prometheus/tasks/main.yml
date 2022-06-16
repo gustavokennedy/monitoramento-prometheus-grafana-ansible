@@ -87,7 +87,7 @@
     name: prometheus
     enabled: yes
     state: started
-  
+
 - name: Verificando status 200 do Prometheus
   uri:
     url: http://localhost:9090
