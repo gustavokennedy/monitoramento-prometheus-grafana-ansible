@@ -66,6 +66,11 @@
 #    name: alertmanager
 #    state: started
 #    enabled: yes
+
+# Faz daemon-reload para evitar erros
+- name: Reinciando daemon-reload
+  shell: |
+    systemctl daemon-reload
     
 - name: ensure alertmanager service is started and enabled
   become: true
