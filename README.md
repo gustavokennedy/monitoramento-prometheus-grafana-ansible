@@ -26,9 +26,11 @@
 git https://github.com/gustavokennedy/monitoramento-prometheus-grafana-ansible.git
 cd monitoramento-prometheus-grafana-ansible
 ```
-Para evitar erros, instale o SSHPASS:
+Para evitar erros, instale o Ansible e o SSHPASS:
 
 ```
+sudo apt-get install ansible
+
 sudo apt-get install sshpass
 ```
 
