@@ -36,6 +36,14 @@ sudo apt-get install ansible
 sudo apt-get install sshpass
 ```
 
+Se a conexão for recusada pela chave (Permission denied (publickey), tente:
+
+Altere a linha para PasswordAuthentication yes
+
+```
+sudo nano /etc/ssh/sshd_config
+```
+
 Caso houver erro de status do Nginx:
 
 ```
