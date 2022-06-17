@@ -44,7 +44,13 @@ Altere a linha para PasswordAuthentication yes
 sudo nano /etc/ssh/sshd_config
 ```
 
-Caso houver erro de status do Nginx:
+Caso houver erro de Invalid/incorrect password: Permission denied, tente:
+
+```
+sudo nano /etc/ssh/sshd_config
+```
+
+Caso houver erro de status do Nginx, tente o [erro Missing Sudo Password](https://github.com/gustavokennedy/resolvendo-missing-sudo-password-ansible).
 
 ```
 sudo /etc/init.d/apache2 stop
