@@ -63,7 +63,7 @@
 
 - name: Iniciando serviço do AlertManager
   service:
-     daemon_reload: true
+      daemon_reload: true
     name: alertmanager
     state: started
     enabled: yes
