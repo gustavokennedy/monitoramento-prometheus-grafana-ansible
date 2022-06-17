@@ -61,11 +61,12 @@
     dest: /etc/systemd/system/alertmanager.service
   notify: systemd_reload
 
-#- name: Iniciando serviço do AlertManager
-#  service:
-#    name: alertmanager
-#    state: started
-#    enabled: yes
+- name: Iniciando serviço do AlertManager
+  service:
+     daemon_reload: true
+    name: alertmanager
+    state: started
+    enabled: yes
 
 # Faz daemon-reload para evitar erros
 #- name: Reinciando daemon-reload
