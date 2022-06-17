@@ -61,11 +61,21 @@
     dest: /etc/systemd/system/alertmanager.service
   notify: systemd_reload
 
-- name: Iniciando serviço do AlertManager
-  service:
+#- name: Iniciando serviço do AlertManager
+#  service:
+#    name: alertmanager
+#    state: started
+#    enabled: yes
+    
+- name: ensure alertmanager service is started and enabled
+  become: true
+  systemd:
+    daemon_reload: true
     name: alertmanager
     state: started
-    enabled: yes
+    enabled: true
+  tags:
+    - alertmanager_run
 
 - name: Verificando status 200 do AlertManager
   uri:
