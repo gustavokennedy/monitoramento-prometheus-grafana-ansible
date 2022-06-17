@@ -63,7 +63,7 @@
 
 - name: Iniciando serviço do AlertManager
   service:
-      daemon_reload: true
+    daemon_reload: true
     name: alertmanager
     state: started
     enabled: yes
@@ -73,12 +73,12 @@
 #  shell: |
 #    systemctl daemon-reload
     
-- name: ensure alertmanager service is started and enabled
-  systemd:
-    daemon_reload: true
-    name: alertmanager
-    state: started
-    enabled: yes
+#- name: ensure alertmanager service is started and enabled
+#  systemd:
+#    daemon_reload: true
+#    name: alertmanager
+#    state: started
+#    enabled: yes
 
 - name: Verificando status 200 do AlertManager
   uri:
