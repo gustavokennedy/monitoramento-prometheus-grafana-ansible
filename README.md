@@ -12,6 +12,8 @@
    </p>
 </p>
 
+> NOTE: Não recomenado para WSL v2 em Windows.
+
 ### Estruturas
 * Nginx - Webserver
 * Prometheus
