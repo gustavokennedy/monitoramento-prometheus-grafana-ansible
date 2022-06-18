@@ -1,16 +1,9 @@
-<p align="center">
-   <br/>
-   <h1 align="center">Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible</h1>
-   <p align="center">
-   Repositório criado para automatizar processo de monitoramento com Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible. Utilizando Ubuntu Server 20.04LTS.
-   </p>
-   <p align="center" style="align: center;">
+# Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible
+Repositório criado para automatizar processo de monitoramento com Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible. Utilizando Ubuntu Server 20.04LTS.>
         <img alt="AWS" src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white">
         <img alt="Nginx" src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
         <img alt="Ansible" src="https://img.shields.io/badge/Ansible-000000?style=for-the-badge&logo=Ansible&logoColor=white">
         <img alt="Prometheus`" src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white">
-   </p>
-</p>
 
 > NOTE: Não recomenado para WSL v2 em Windows.
 
