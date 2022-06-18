@@ -61,11 +61,10 @@
     dest: /etc/systemd/system/alertmanager.service
   notify: systemd_reload
 
-# Faz daemon-reload para evitar erros
-#- name: Reinciando daemon-reload
-#  shell: |
-#    systemctl daemon-reload
-  
+ Faz daemon-reload para evitar erros
+- name: Reinciando daemon-reload
+  shell: |
+    systemctl daemon-reload
 
 - name: Iniciando serviço do AlertManager
   service:
