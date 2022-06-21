@@ -1,4 +1,11 @@
 ---   
+- hosts: nginx
+  gather_facts: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - nginx
+    
 - hosts: node_exporter
   become: yes
   become_user: root
