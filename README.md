@@ -1,5 +1,5 @@
 # Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible
-Repositório criado para automatizar processo de monitoramento com Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible. Utilizando Ubuntu Server 20.04LTS.
+Repositório criado para automatizar processo de monitoramento com <B>Prometheus, AlertManager, Node_Exporter e Grafana usando Ansible</a>. Utilizando Ubuntu Server 20.04LTS.
 <br /><br />
         <img alt="AWS" src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white">
         <img alt="Nginx" src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
