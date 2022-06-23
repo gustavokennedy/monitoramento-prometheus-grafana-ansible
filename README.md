@@ -103,4 +103,4 @@ Para inciar o playbook no servidor do cliente, execute:
 ```
 ansible-playbook playbook-cliente.yml
 ```
-O playbook criaram Node_Exporter padrão, sem configurações de Proxy com Nginx.
+O playbook executa o Node_Exporter padrão, sem configurações de Proxy com Nginx.
