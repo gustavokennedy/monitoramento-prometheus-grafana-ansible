@@ -98,8 +98,9 @@ Pode acontencer [erro Missing Sudo Password](https://github.com/gustavokennedy/r
 
 Para inciar o playbook no servidor do cliente, execute:
 
-> NOTE: Lembrar de liberar portas para Prometheus, AlertManager, Node_Exporter e Grafana.
+> NOTE: Lembrar de liberar portas para Node_Exporter.
 
 ```
 ansible-playbook playbook-cliente.yml
 ```
+O playbook criaram Node_Exporter padrão, sem configurações de Proxy com Nginx.
