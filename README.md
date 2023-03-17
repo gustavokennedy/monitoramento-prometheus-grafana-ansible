@@ -20,7 +20,7 @@ Repositório criado para automatizar processo de monitoramento com <B>Prometheus
 ### 1. Clone o repositório e instale as dependências no servidor de monitoramento
 
 ```
-git https://github.com/gustavokennedy/monitoramento-prometheus-grafana-ansible.git
+git clone https://github.com/gustavokennedy/monitoramento-prometheus-grafana-ansible.git
 cd monitoramento-prometheus-grafana-ansible
 ```
 Para evitar erros, instale/ative o SSH, Ansible e o SSHPASS:
