@@ -26,11 +26,7 @@ cd monitoramento-prometheus-grafana-ansible
 Para evitar erros, instale/ative o SSH, Ansible e o SSHPASS:
 
 ```
-sudo service ssh start
-
-sudo apt-get install ansible
-
-sudo apt-get install sshpass
+sudo service ssh start &&  sudo apt-get install ansible && sudo apt-get install sshpass
 ```
 
 Se a conexão for recusada pela chave (Permission denied (publickey), tente:
@@ -91,6 +87,7 @@ Caso ainda aconteça erro de permissão tente:
 ```
 sudo ansible-playbook playbook.yml -kK 
 ```
+Acesse `http://localhost` para navegar.
 
 Pode acontencer [erro Missing Sudo Password](https://github.com/gustavokennedy/resolvendo-missing-sudo-password-ansible);
 
